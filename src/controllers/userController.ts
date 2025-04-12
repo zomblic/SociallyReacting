@@ -49,7 +49,7 @@ import { Request, Response } from 'express';
         return res.status(404).json({ message: 'No user with that ID' });
       }
 
-      await Application.deleteMany({ _id: { $in: user.applications } });
+      await User.deleteMany({ _id: { $in: user } });
       res.json({ message: 'User and associated apps deleted!' })
       return;
     } catch (err) {
@@ -57,4 +57,27 @@ import { Request, Response } from 'express';
       return;
     }
   }
+
+
+export const addFriend = async (req: Request, res: Response) => {
+  const { userId, friendId } = req.params;
+
+  // Check if the user exists
+
+  // We can ADD the friendId value to the current uer's friends array
+  try {
+    const user = await User.findOneAndUpdate(
+      { _id: userId },
+      { $addToSet: { friends: friendId } },
+      { new: true }
+    );
+    // validate if the user exists
+    if (!user) {
+      return res.status(404).json({ message: 'No user with that ID' });
+    }
+    return res.json(user);
+  } catch (error) {
+    return res.status(500).json({ message: 'Error adding friend' });
+  }
+};
 
