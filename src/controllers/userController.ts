@@ -1,4 +1,4 @@
-import { User, Application } from '../models/index.js';
+import { User } from '../models/index.js';
 import { Request, Response } from 'express';
 
 
@@ -81,3 +81,39 @@ export const addFriend = async (req: Request, res: Response) => {
   }
 };
 
+
+
+export const removeFriend = async (req: Request, res: Response) => {
+  const { userId, friendId } = req.params;
+  // Check if the user exists
+  // We can REMOVE the friendId value from the current uer's friends array
+  try { 
+    const user = await User.findOneAndUpdate(
+      { _id: userId },
+      { $pull: { friends: friendId } },
+      { new: true }
+    );
+    // validate if the user exists
+    if (!user) {
+      return res.status(404).json({ message: 'No user with that ID' });
+    }
+    return res.json(user);
+  } catch (error) {
+    return res.status(500).json({ message: 'Error removing friend' });
+  }};
+
+export const getFriends = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+
+  try {
+    const user = await User.findById(userId).populate('friends');
+
+    if (!user) {
+      return res.status(404).json({ message: 'No user with that ID' });
+    }
+
+    return res.json(user.friends);
+  } catch (error) {
+    return res.status(500).json({ message: 'Error retrieving friends' });
+  }
+}
