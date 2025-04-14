@@ -1,0 +1,27 @@
+[
+    {
+      "thoughtText": "Driver picks the music, shotgun shuts his cakehole.",
+      "username": "Dean Winchester",
+      "createdAt": { "$date": "2025-04-12T10:00:00Z" },
+      "reactions": [
+        {
+          "reactionBody": "Classic Dean.",
+          "username": "Sam Winchester",
+          "createdAt": { "$date": "2025-04-12T10:30:00Z" }
+        }
+      ]
+    },
+    {
+      "thoughtText": "I lost my shoe...",
+      "username": "Sam Winchester",
+      "createdAt": { "$date": "2025-04-12T11:00:00Z" },
+      "reactions": [
+        {
+          "reactionBody": "I can't take you anywhere.",
+          "username": "Dean Winchester",
+          "createdAt": { "$date": "2025-04-12T11:10:00Z" }
+        }
+      ]
+    }
+  ]
+  

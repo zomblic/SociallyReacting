@@ -110,13 +110,13 @@ import reactionThought from '../models/Thought.js';
   export const addReaction = async (req: Request, res: Response) => {
     try {
       const reaction = await reactionThought.findOneAndUpdate(
-        { _id: req.params.reactionnId },
+        { _id: req.params.thoughtId },
         { $addToSet: { tags: req.body } },
         { runValidators: true, new: true }
       );
 
       if (!reaction) {
-        return res.status(404).json({ message: 'No reaction with this id!' });
+        return res.status(404).json({ message: 'No thought with this id!' });
       }
 
       res.json(reaction);
@@ -132,7 +132,7 @@ import reactionThought from '../models/Thought.js';
     try {
       const reaction = await reactionThought.findOneAndUpdate(
         { _id: req.params.reactionId },
-        { $pull: { tags: { tagId: req.params.tagId } } },
+        { $addToSet: { reactions: req.body } },
         { runValidators: true, new: true }
       );
 

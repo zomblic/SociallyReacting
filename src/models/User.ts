@@ -23,6 +23,10 @@ const userSchema = new Schema<IUser>(
       unique: true,
       match: [/.+@.+\..+/, 'Must match an email address!'],
     },
+    getFriends: {
+      type: Number,
+      default: 0,
+    },
     thoughts: [{
       type: Schema.Types.ObjectId, ref: 'Thought'
     }],

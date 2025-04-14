@@ -40,6 +40,27 @@ import { Request, Response } from 'express';
     }
   }
 
+  // update a user and associated apps
+  export const updateUser = async (req: Request, res: Response) => {
+    try {
+      const user = await User.findOneAndUpdate(
+        { _id: req.params.userId });
+      if (!user) {
+        return res.status(404).json({ message: 'No user with that ID' });
+      }
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $set: req.body },
+        { new: true }
+      );
+      res.json(updatedUser);
+      return;
+    } catch (err) {
+      res.status(500).json(err);
+      return;
+    }
+  }
+
   // Delete a user and associated apps
   export const deleteUser = async (req: Request, res: Response) => {
     try {

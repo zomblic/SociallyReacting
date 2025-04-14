@@ -3,7 +3,9 @@ const router = Router();
 import { 
   getUsers,
   getSingleUser,   
-  createUser,   
+  createUser, 
+  updateUser,
+  deleteUser,  
   addFriend,   
   removeFriend,   
   getFriends 
@@ -17,6 +19,8 @@ router.route('/')
 
 // /api/users/:userId
 router.route('/:userId').get(getSingleUser);
+router.route('/:userId').delete(deleteUser);
+router.route('/:userId').put(updateUser);
 
 // /api/users/:userId/friends
 router.route('/:userId/friends').get(getFriends);
