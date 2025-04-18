@@ -14,8 +14,7 @@
 
   ## <span style="color:rgb(158, 66, 160);">Description</span>
 
-  [![Watch the video]](https://drive.google.com/file/d/1-Rd6368w7-rS7o4n5pNiTK0pxG_EPo1z/view?usp=drive_link
-  )
+  [![Watch the video]](https://drive.google.com/file/d/1-Rd6368w7-rS7o4n5pNiTK0pxG_EPo1z/view?usp=sharing)
 
   
   Want to make friends, share thoughts and react to shared thoughts? Well... you can't do it quite yet, but out backend database can! 
